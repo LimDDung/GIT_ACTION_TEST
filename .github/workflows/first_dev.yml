@@ -48,4 +48,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ykhtest/app:latest
+          tags: kihyunlim/my-test:latest
