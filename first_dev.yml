@@ -1,0 +1,7 @@
+name: Our First Workflow
+on: push
+jobs:
+  echo:
+    steps:
+      - name: Test echo
+      - run: echo 'Hello, GitHub Actions!'
