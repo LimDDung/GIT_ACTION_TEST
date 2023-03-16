@@ -23,7 +23,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name : Checkout
+        uses: actions/checkout@v3
 
       ### aws 로그인
       # AWS Access Key ID [None]: AKIARZYQXCMDK6SI6KPI
@@ -36,9 +37,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-
-        
-
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
         
         
       #aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 124052247302.dkr.ecr.ap-northeast-2.amazonaws.com
