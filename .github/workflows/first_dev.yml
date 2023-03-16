@@ -40,8 +40,20 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: automobile
+          IMAGE_TAG: automobile_tag
+        run: |
+          docker buildx build --platform=linux/amd64 -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"        
+
         
-        
+      
       #aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 124052247302.dkr.ecr.ap-northeast-2.amazonaws.com
 
         ### aws 레포ㅓ에 올리기  도커 이미지 빌드 
