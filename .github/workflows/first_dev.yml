@@ -36,16 +36,44 @@ jobs:
           echo test, and deploy your project.
 
 
-      #### docker bul
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
+        ### aws 로그인
+        # AWS Access Key ID [None]: AKIARZYQXCMDK6SI6KPI
+        # AWS Secret Access Key [None]: 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
+        # Default region name [None]: ap-northeast-2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}           
 
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ubuntu16.04:latest
+
+        ### aws 레포ㅓ에 올리기  도커 이미지 빌드 
+
+        ### ssh --> 자동차 서버 접속 
+
+        ### docker pull  
+
+        ## docker run
+
+        ## npm  
+        ## 
+
+
+      #### docker bul
+      # - name: Login to DockerHub
+      #   uses: docker/login-action@v1
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+
+    
+      # - name: Build and push
+      #   uses: docker/build-push-action@v4
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/ubuntu16.04:latest
+
+
