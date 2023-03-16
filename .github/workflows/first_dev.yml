@@ -40,13 +40,23 @@ jobs:
         # AWS Access Key ID [None]: AKIARZYQXCMDK6SI6KPI
         # AWS Secret Access Key [None]: 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
         # Default region name [None]: ap-northeast-2
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}           
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: ${{ secrets.AWS_REGION }}
 
+        - name: Login to Amazon ECR
+          id: login-ecr
+          uses: aws-actions/amazon-ecr-login@v1
+
+
+        
+
+        
+        
+      #aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 124052247302.dkr.ecr.ap-northeast-2.amazonaws.com
 
         ### aws 레포ㅓ에 올리기  도커 이미지 빌드 
 
